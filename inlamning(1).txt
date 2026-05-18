@@ -1,0 +1,50 @@
+# Frågar användaren efter namn på huvudmappen
+$namn = Read-Host "Ange namn på huvudmappen"
+
+# Funktion som skapar mappar
+function Skapa-Mappar {
+
+    param (
+        [string]$mappNamn
+    )
+
+    try {
+
+        # Kontrollerar om mappen redan finns
+        if (Test-Path $mappNamn) {
+            throw "Mappen finns redan."
+        }
+
+        # Skapar huvudmappen
+        New-Item -ItemType Directory -Path $mappNamn
+
+        # Skapar undermappar
+        New-Item -ItemType Directory -Path "$mappNamn\logs"
+        New-Item -ItemType Directory -Path "$mappNamn\scripts"
+        New-Item -ItemType Directory -Path "$mappNamn\temp"
+
+        # Hämtar dagens datum
+        $datum = Get-Date -Format "yyyy-MM-dd"
+
+        # Skapar namn på loggfilen
+        $loggFil = "$mappNamn\logs\log-$datum.txt"
+
+        # Skriver datum och tid i loggfilen
+        $tid = Get-Date
+        Add-Content -Path $loggFil -Value "Struktur skapad: $tid"
+
+        # Visar meddelande om allt fungerade
+        Write-Host "Strukturen skapades korrekt."
+
+    }
+    catch {
+
+        # Visar felmeddelande
+        Write-Host "Fel: $_"
+
+    }
+
+}
+
+# Kör funktionen
+Skapa-Mappar -mappNamn $namn

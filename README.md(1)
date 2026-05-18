@@ -1,0 +1,21 @@
+# Strukturverktyg i PowerShell
+
+## Beskrivning
+Detta PowerShell-skript skapar en huvudmapp med tre undermappar: logs, scripts och temp.
+Programmet frågar först användaren efter ett namn på huvudmappen och skapar sedan hela strukturen automatiskt.
+I logs-mappen skapas även en loggfil med dagens datum och tid.
+
+## Hur koden fungerar
+Koden använder `Read-Host` för att ta emot input från användaren.
+Sedan används en funktion som heter `Skapa-Mappar` för att göra koden tydligare och enklare att återanvända.
+Med `New-Item` skapas huvudmappen och undermapparna.
+`Get-Date` används för att hämta dagens datum och skapa rätt namn på loggfilen.
+Därefter används `Add-Content` för att skriva datum och tid i loggfilen.
+Programmet använder även `try/catch` för felhantering, till exempel om mappen redan finns.
+
+## Vad jag har lärt mig
+I denna uppgift har jag lärt mig grunderna i PowerShell,
+hur man tar input från användaren, 
+hur man skapar mappar och filer automatiskt och hur funktioner fungerar.
+Jag har också lärt mig att använda `try/catch` för att hantera fel och hur man skriver till en textfil.
+Jag har även förstått att kommentarer gör koden enklare att läsa och förstå för andra personer.
